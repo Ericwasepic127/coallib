@@ -60,6 +60,6 @@ fi
 
 $PYTHONPIP install --upgrade pip && $PYTHONPIP install --upgrade setuptools twine build
 
-if ! $PYTHONLOC -m build; then
+if $PYTHONLOC -m build; then
     $PYTHONLOC -m twine upload --repository $REPO --username __token__ --password "$PYPI_TOKEN" dist/*
 fi
