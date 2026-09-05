@@ -46,7 +46,7 @@ def raise_callable(obj, where="<unknown>", exc=TypeError, explain=None):
         # This wrapper only gets functions, if not it raises as
         # TypeError: argument num must callable, got 'str'
         # when you do wrapper('test')"""
-    if explain is None or not explain:
-        explain = f"argument {where} must callable, got {obj.__name__!r} object"
-    if not callable(obj) or not hasattr(obj, "__call__"):
-        raise exc(explain)
+        if explain is None or not explain:
+            explain = f"argument {where} must callable, got {obj.__name__!r} object"
+        if not callable(obj) or not hasattr(obj, "__call__"):
+            raise exc(explain)

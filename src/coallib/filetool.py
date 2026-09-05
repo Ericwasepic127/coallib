@@ -25,5 +25,5 @@ def remove(path, safe=True):
         _sf(path)
     elif safe and exists(path):
         _sd(path)
-    else safe:
+    else:
         _sf(path)

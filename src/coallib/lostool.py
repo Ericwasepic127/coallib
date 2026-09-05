@@ -46,3 +46,26 @@ def Lambda(defaultArgs: tuple=(), defaultKwargs: dict={}) -> object:
                 return func(*default)
         return w
     return wrapper
+
+def custom_repr(name_to=None):
+    """Custom REPR-ing at function"""
+    if not isinstance(name_to, str):
+        name_to = "<Function %s>"
+    def wrap(func):
+        class CustomRepr:
+            def __repr__(self):
+                return (name_to % func.__name__) if "%s" in name_to else name_to
+            def __call__(self, *a, **k):
+                return func(*a, **k)
+        CustomRepr.__call__.__doc__ = func.__doc__
+        return CustomRepr()
+    return wrap(name_to) if callable(name_to) else wrap
+
+def smartDeco(defArg=(), defKwarg={}):
+    """Smart decorater"""
+    def helper(deco):
+        def wrapper(*args, **kwargs):
+            res = deco(*defArg, **defKwarg)(args[0]) if len(args) == 1 and callable(args[0]) and not kwargs else deco(*args, **kwargs)
+            return res
+        return wrapper
+    return helper

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Made by @Ericwasepic127
 
-from . import loady, itertool, lostool, iftool, filetool, termtool
+from . import loady, itertool, lostool, iftool, filetool, termtool, versioner, animlib, timer
 import platform
 
-imports = [loady, itertool, lostool]
+imports = [loady, itertool, lostool, versioner, iftool, filetool, animlib, timer]
 
 if "wasm32" in platform.architecture():
     from . import pyscripter, pagerfix, m2w
@@ -21,7 +21,7 @@ __all__ = []
 for x in every:
     for y in x:
         if y in __all__:
-            raise RuntimeError("Imports are conflicting")
+            raise RuntimeError(f"Imports are conflicting: {y} {x}")
         __all__.append(y) if not y.startswith("_") else None
 __version__ = "V1.0"
 
