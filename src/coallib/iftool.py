@@ -26,7 +26,13 @@ def raise_type(obj, classCheck, where="<unknown>", exc=TypeError, explain=None):
         # TypeError: argument num must 'int', got 'str'
         # when you do multipy('test')"""
     if explain is None or not explain:
-        explain = f"argument {where} must {classCheck.__name__!r}, got {obj.__name__!r}"
+        if hasattr(obj, "__name__"):
+            name = obj.__name__
+        elif hasattr(obj, "__class__") and hasattr(obj.__class__, "__name__"):
+            name = obj.__class__.__name__
+        else:
+            name = "<unknown-type>"
+        explain = f"argument {where} must {classCheck.__name__!r}, got {name!r}"
     if not check_type(obj, classCheck):
         raise exc(explain)
 

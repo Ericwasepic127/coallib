@@ -2,7 +2,7 @@
 # Made by @Ericwasepic127
 
 from .iftool import raise_type, raise_callable
-from .itertool import full_fix_str as fixer
+from .itertool import full_fix_str as fixer, get_fixed_string as asteirkremover
 
 modes = {
     0: ("y*", "(y/n)"),
@@ -29,15 +29,15 @@ def confirm(prompt, mode=MODE_YN, use=input):
     raise_type(mode,  Modes, where="mode")
     raise_callable(use, where="use")
     get = None
-    ask = mode.mode
+    ask = list(mode.mode)
     asteirk = False
     if ask[0].endswith("*"):
         asteirk = True
-        ask[0].strip("*")
+        ask[0] = asteirkremover(ask[0], "*")
     while get is None:
         try:
             user = fixer(use(f"{prompt} {ask[1]} ").lower())
-        except:
+        except KeyboardInterrupt, EOFError:
             print("\n[WARNING]: Interrupted\n")
             continue
         if asteirk:

@@ -16,7 +16,7 @@ def get_fixed_string(string: str, remove: str=" ") -> str:
     from .iftool import raise_type
     raise_type(string, str)
     raise_type(remove, str)
-    return string.strip().rstrip()
+    return string.strip(remove).rstrip(remove)
 
 def full_fix_str(string: str) -> str:
     """Removes any trailing space and newlines"""

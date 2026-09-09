@@ -24,7 +24,7 @@ How to use?
     `connect = m2w.specTab('name_to_give') # you can id parameter for another broadcasting channel`
 4. Send messages using `connect.sendmsg(Message_here)` and recieve using `connect.getmsg`
 """
-import js, time, warnings
+import warnings, js
 from pyodide.ffi import create_proxy, to_js
 
 class Main:

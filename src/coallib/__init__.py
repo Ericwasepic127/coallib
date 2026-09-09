@@ -8,7 +8,7 @@ imports = [loady, itertool, lostool, versioner, iftool, filetool, animlib, timer
 
 if "wasm32" in platform.architecture():
     from . import pyscripter, pagerfix, m2w
-    imports.append(pyscripter, pagerfix, m2w)
+    imports += [pyscripter, pagerfix, m2w]
 
 every = []
 for mod in imports:

@@ -10,8 +10,8 @@ __all__ = ["worker_base_path", "fetch", "SLD"]
 from pyscript import storage as s
 from asyncio import run as asynch
 from random import choice as c
-from pyodide.ffi import can_run_sync A cRs
-import asyncio, pyscript, time
+from pyodide.ffi import can_run_sync as cRs
+import asyncio, time, pyscript, js
 
 def worker_base_path(loc: str) -> str:
     """Helps path to fix in worker, which when try ./examplefile, it tries to blob URL and fails"""
