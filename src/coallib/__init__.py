@@ -6,7 +6,7 @@ import platform
 
 imports = [loady, itertool, lostool, versioner, iftool, filetool, animlib, timer]
 
-if "wasm32" in platform.architecture():
+if "wasm32" in platform.machine():
     from . import pyscripter, pagerfix, m2w
     imports += [pyscripter, pagerfix, m2w]
 
