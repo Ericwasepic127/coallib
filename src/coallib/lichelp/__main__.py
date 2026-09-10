@@ -34,10 +34,11 @@ if not cur and sys.platform == "win32":
 elif not cur:
     cur = os.path.join(save, __name__)
 os.chdir(save)
+joiner = lambda n: os.path.join(cur, n)
 del save
 del i
 
-with open(os.path.join(cur, "use.json")) as x:
+with open(os.path.join(cur, joiner("use.json"))) as x:
     setup = json.load(x)
 
 def show_split(icon="="):
